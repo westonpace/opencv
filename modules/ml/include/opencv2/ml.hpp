@@ -305,6 +305,10 @@ public:
 
     CV_WRAP virtual bool empty() const;
 
+    /** Saves the algorithm to a file.
+     In order to make this method work, the derived class must implement Algorithm::write(FileStorage& fs). */
+    CV_WRAP virtual void weston_save(const String& filename) const;
+
     /** @brief Returns true if the model is trained */
     CV_WRAP virtual bool isTrained() const = 0;
     /** @brief Returns true if the model is classifier */
@@ -1202,6 +1206,8 @@ public:
     /** Creates the empty model.
     Use StatModel::train to train the model, Algorithm::load\<Boost\>(filename) to load the pre-trained model. */
     CV_WRAP static Ptr<Boost> create();
+
+    CV_WRAP static Ptr<Boost> weston_load(const String& filename);
 };
 
 /****************************************************************************************\

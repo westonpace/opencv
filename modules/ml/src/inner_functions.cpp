@@ -176,6 +176,15 @@ void randMVNormal( InputArray _mean, InputArray _cov, int nsamples, OutputArray 
     }
 }
 
+void StatModel::weston_save(const String& filename) const 
+{
+  FileStorage fs(filename, FileStorage::WRITE);
+  fs << getDefaultName() << "{";
+  fs << "format" << (int)3;
+  write(fs);
+  fs << "}";
+}
+
 }}
 
 /* End of file */

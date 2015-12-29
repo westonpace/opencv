@@ -506,6 +506,15 @@ Ptr<Boost> Boost::create()
     return makePtr<BoostImpl>();
 }
 
+Ptr<Boost> Boost::weston_load(const String& filename)
+{
+    FileStorage fs(filename, FileStorage::READ);
+    FileNode fn = fs.getFirstTopLevelNode();
+    Ptr<Boost> obj = Boost::create();
+    obj->read(fn);
+    return !obj->empty() ? obj : Ptr<Boost>();
+}
+
 }}
 
 /* End of file. */
